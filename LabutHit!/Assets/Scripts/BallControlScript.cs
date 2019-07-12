@@ -38,7 +38,6 @@ public class BallControlScript : MonoBehaviour
         {
             if (Input.touchCount > 0)
             {
-                UIScript.Instance.HideLevelStartPanel();
                 aimRenderer.enabled = true;
                 Touch touch = Input.GetTouch(0);
                 Debug.Log(touch.phase);

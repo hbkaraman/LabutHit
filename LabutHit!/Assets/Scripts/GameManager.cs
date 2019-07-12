@@ -5,11 +5,16 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    
+
     #region Singleton
 
     public static GameManager Instance;
 
+    void Start()
+    {
+       _pins = FindObjectsOfType<PinScript>();
+       _isFin= new bool[_pins.Count()];
+    }
     private void Awake()
     {
         if (Instance == null)
@@ -24,20 +29,15 @@ public class GameManager : MonoBehaviour
     }
 
     #endregion
-    
-    
+
+
     //public GameObject[] Pincont;
-    public PinScript[] _pins;
-    public bool[] _isFin;
-   // public int score;
-    
-    
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        //Pincont.All(GetComponentsInChildren<PinScript>())
-    }
+    PinScript[] _pins;
+    bool[] _isFin;
+    // public int score;
+
+
+
 
     // Update is called once per frame
     void Update()
@@ -45,10 +45,11 @@ public class GameManager : MonoBehaviour
         EndGameControl();
     }
 
+    
 
     void EndGameControl()
     {
-        for (int i = 0; i < _pins.Length ; i++)
+        for (int i = 0; i < _pins.Length; i++)
         {
             if (_pins[i].isTouchPlayer)
             {
@@ -56,7 +57,7 @@ public class GameManager : MonoBehaviour
 
                 if (_isFin.All(_isFin => _isFin))
                 {
-                   Debug.Log("GameEnd");
+                    Debug.Log("GameEnd");
                 }
             }
         }
@@ -64,8 +65,8 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator NextLevel()
     {
-        
-        yield return new  WaitForSeconds(2f);
+
+        yield return new WaitForSeconds(2f);
     }
-    
+
 }
