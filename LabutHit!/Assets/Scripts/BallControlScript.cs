@@ -13,7 +13,6 @@ public class BallControlScript : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody>();
         aimRenderer = aimPlane.GetComponent<MeshRenderer>();
     }
-    public GameObject cam;
 
     RaycastHit hit;
     public LayerMask mask;
@@ -21,7 +20,9 @@ public class BallControlScript : MonoBehaviour
     private Vector3 force;
     private Vector3 touchPos;
     public GameObject touchIndicator;
-    public GameObject ball;
+    public float forceMultiplier = 5;
+
+    private Vector3 originPos;
 
     private bool isMoving = false;
     void Update()
@@ -40,9 +41,9 @@ public class BallControlScript : MonoBehaviour
                 Physics.Raycast(ray, out hit, 1000, mask);
                 if (touch.phase == TouchPhase.Began)
                 {
-                    aimRenderer.enabled = true;
                     touchPos = hit.point;
                     touchIndicator.transform.position = hit.point;
+                    aimRenderer.enabled = true;
                 }
                 Vector3 subtraction = hit.point - touchPos;
                 float angle = Vector3.SignedAngle(subtraction, touchIndicator.transform.forward, Vector3.up);
@@ -54,17 +55,18 @@ public class BallControlScript : MonoBehaviour
             }
             else
             {
-                rb.AddForce(force * 5, ForceMode.Impulse);
-                aimRenderer.enabled = false;
+                rb.AddForce(force * forceMultiplier, ForceMode.Impulse);
+                //aimRenderer.enabled = false;
                 force = Vector3.zero;
                 isMoving = true;
             }
         }
-        if (isMoving&&rb.velocity.magnitude < 0.25f)
+        if (isMoving && rb.velocity.magnitude < 0.25f)
         {
             rb.velocity = Vector3.zero;
-            gameObject.transform.localEulerAngles = Vector3.zero;
             isMoving = false;
+            gameObject.transform.position=new Vector3(0,1.48f,0);
+            gameObject.transform.localEulerAngles = Vector3.zero;
         }
     }
 }
