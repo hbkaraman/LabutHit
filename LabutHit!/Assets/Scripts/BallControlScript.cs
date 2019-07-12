@@ -28,13 +28,13 @@ public class BallControlScript : MonoBehaviour
     private bool isMoving = false;
     void Update()
     {
-       
+
         if (isMoving && rb.velocity.magnitude != 0)
         {
             isMoving = false;
             gameObject.transform.localEulerAngles = Vector3.zero;
         }
-        if (!isMoving && rb.velocity.magnitude < 0.25F)
+        if (!isMoving && rb.velocity.magnitude < 0.75F)
         {
             if (Input.touchCount > 0)
             {
@@ -72,7 +72,19 @@ public class BallControlScript : MonoBehaviour
         }
     }
 
+    void OnGUI()
+    {
+        int w = Screen.width, h = Screen.height;
 
+        GUIStyle style = new GUIStyle();
+
+        Rect rect = new Rect(0, 0, w, h * 2 / 100);
+        style.alignment = TextAnchor.UpperLeft;
+        style.fontSize = h * 2 / 100;
+        style.normal.textColor = new Color(0.0f, 0.0f, 0.5f, 1.0f);
+        string text = rb.velocity.magnitude.ToString();
+        GUI.Label(rect, text, style);
+    }
     private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.tag == "Wall")

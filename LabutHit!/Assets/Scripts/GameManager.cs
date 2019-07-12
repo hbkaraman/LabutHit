@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,8 +13,8 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-       _pins = FindObjectsOfType<PinScript>();
-       _isFin= new bool[_pins.Count()];
+        _pins = FindObjectsOfType<PinScript>();
+        _isFin = new bool[_pins.Count()];
     }
     private void Awake()
     {
@@ -45,7 +46,7 @@ public class GameManager : MonoBehaviour
         EndGameControl();
     }
 
-    
+
 
     void EndGameControl()
     {
@@ -57,10 +58,16 @@ public class GameManager : MonoBehaviour
 
                 if (_isFin.All(_isFin => _isFin))
                 {
-                    Debug.Log("GameEnd");
+                    Invoke("levleLoadInvokable", 5f);
                 }
             }
         }
+    }
+
+
+    private void levleLoadInvokable()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     private IEnumerator NextLevel()
