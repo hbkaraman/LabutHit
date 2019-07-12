@@ -6,7 +6,8 @@ using UnityEngine;
 public class PinScript : MonoBehaviour
 {
     public bool isTouchPlayer;
-    private GameObject _particleEffect;
+    private GameObject _particleEffectFirst;
+    private GameObject _particleEffectSecond;
     public Material _mat;
     private Renderer _rend;
     private bool oneCreted = true;
@@ -34,14 +35,17 @@ public class PinScript : MonoBehaviour
        // GameManager.Instance.score += 1;
         //scoreText.gameObject.SetActive(true);
         _rend.material = _mat;
-        _particleEffect = ObjectPooler.SharedInstance.GetPooledObject(0);
-        _particleEffect.gameObject.transform.position = transform.position;
-        _particleEffect.SetActive(true);
+        _particleEffectFirst = ObjectPooler.SharedInstance.GetPooledObject(0);
+        _particleEffectFirst.gameObject.transform.position = transform.position;
+        _particleEffectFirst.SetActive(true);
         oneCreted = false;
-       /* yield return new WaitForSeconds(1f);
-        scoreText.gameObject.SetActive(false);*/
         yield return new WaitForSeconds(3f);
-        
+        gameObject.GetComponent<MeshRenderer>().enabled = false;
+        gameObject.GetComponent<CapsuleCollider>().enabled = false;
+        _particleEffectSecond =  ObjectPooler.SharedInstance.GetPooledObject(1);
+        _particleEffectSecond.gameObject.transform.position = transform.position;
+        _particleEffectSecond.SetActive(true);
+        yield return new WaitForSeconds(3f);
         this.gameObject.SetActive(false);
     }
 }

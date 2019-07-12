@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class BallControlScript : MonoBehaviour
 {
@@ -27,6 +28,7 @@ public class BallControlScript : MonoBehaviour
     private bool isMoving = false;
     void Update()
     {
+       
         if (isMoving && rb.velocity.magnitude != 0)
         {
             isMoving = false;
@@ -36,6 +38,7 @@ public class BallControlScript : MonoBehaviour
         {
             if (Input.touchCount > 0)
             {
+                UIScript.Instance.HideLevelStartPanel();
                 aimRenderer.enabled = true;
                 Touch touch = Input.GetTouch(0);
                 Debug.Log(touch.phase);
@@ -66,8 +69,16 @@ public class BallControlScript : MonoBehaviour
         {
             rb.velocity = Vector3.zero;
             isMoving = false;
-            gameObject.transform.position=new Vector3(0,1.52f,0);
             gameObject.transform.localEulerAngles = Vector3.zero;
+        }
+    }
+
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag == "Wall")
+        {
+            CameraShake.Instance.isAnimationPlaying = true;
         }
     }
 }

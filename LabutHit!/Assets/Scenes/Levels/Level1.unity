@@ -3683,6 +3683,9 @@ MonoBehaviour:
   - objectToPool: {fileID: 100000, guid: 83cd9cc9f9c88824ba18dc59b05ae328, type: 3}
     amountToPool: 20
     shouldExpand: 0
+  - objectToPool: {fileID: 100000, guid: 83cd9cc9f9c88824ba18dc59b05ae328, type: 3}
+    amountToPool: 20
+    shouldExpand: 0
   pooledObjects: []
 --- !u!4 &1954604897
 Transform:
@@ -4016,7 +4019,8 @@ PrefabInstance:
       propertyPath: touchIndicator
       value: 
       objectReference: {fileID: 98327826}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4588510251427008330, guid: 9c9e7b910239f52458e5d6f5396abd57, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9c9e7b910239f52458e5d6f5396abd57, type: 3}
 --- !u!1001 &5742333524224027163
 PrefabInstance:
