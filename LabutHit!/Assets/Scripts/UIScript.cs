@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UIScript : MonoBehaviour
 {
-    
+    public BallControlScript ballController;
     #region Singleton
 
     public static UIScript Instance;
@@ -26,10 +26,11 @@ public class UIScript : MonoBehaviour
     private bool isClicked;
     private void Update()
     {
-        if (Input.GetMouseButton(0) && isClicked)
+        if (Input.GetMouseButton(0) && !isClicked)
         {
             HideLevelStartPanel();
             isClicked = true;
+            ballController.enabled=true;
         }
     }
 
