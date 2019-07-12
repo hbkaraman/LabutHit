@@ -3753,21 +3753,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4588510251103454745, guid: 9c9e7b910239f52458e5d6f5396abd57,
-        type: 3}
-      propertyPath: touchIndicator
-      value: 
-      objectReference: {fileID: 98327826}
-    - target: {fileID: 4588510251103454745, guid: 9c9e7b910239f52458e5d6f5396abd57,
-        type: 3}
-      propertyPath: forceMultiplier
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4588510251103454745, guid: 9c9e7b910239f52458e5d6f5396abd57,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4588510251103454750, guid: 9c9e7b910239f52458e5d6f5396abd57,
         type: 3}
       propertyPath: m_Drag
@@ -3792,6 +3777,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_CollisionDetection
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4588510251103454745, guid: 9c9e7b910239f52458e5d6f5396abd57,
+        type: 3}
+      propertyPath: touchIndicator
+      value: 
+      objectReference: {fileID: 98327826}
+    - target: {fileID: 4588510251103454745, guid: 9c9e7b910239f52458e5d6f5396abd57,
+        type: 3}
+      propertyPath: forceMultiplier
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4588510251103454745, guid: 9c9e7b910239f52458e5d6f5396abd57,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4588510251427008331, guid: 9c9e7b910239f52458e5d6f5396abd57,
         type: 3}

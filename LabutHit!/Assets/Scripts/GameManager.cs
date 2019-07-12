@@ -77,9 +77,8 @@ public class GameManager : MonoBehaviour
        // particleEffect = ObjectPooler.SharedInstance.GetPooledObject(2);
        // particleEffect.SetActive(true);
         yield return new WaitForSeconds(5f);
-        if(SceneManager.sceneCount-1!=SceneManager.GetActiveScene().buildIndex){
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        }
+      
     }
 
 }
