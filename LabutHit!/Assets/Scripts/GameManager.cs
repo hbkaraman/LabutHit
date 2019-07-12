@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
     PinScript[] _pins;
     bool[] _isFin;
     // public int score;
+    private GameObject particleEffect;
 
 
 
@@ -58,7 +59,7 @@ public class GameManager : MonoBehaviour
 
                 if (_isFin.All(_isFin => _isFin))
                 {
-                    Invoke("levleLoadInvokable", 5f);
+                    StartCoroutine("NextLevel");
                 }
             }
         }
@@ -67,13 +68,16 @@ public class GameManager : MonoBehaviour
 
     private void levleLoadInvokable()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        
     }
 
     private IEnumerator NextLevel()
     {
-
-        yield return new WaitForSeconds(2f);
+        UIScript.Instance.ShowLevelComplatedPanel();
+       // particleEffect = ObjectPooler.SharedInstance.GetPooledObject(2);
+       // particleEffect.SetActive(true);
+        yield return new WaitForSeconds(5f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
 }

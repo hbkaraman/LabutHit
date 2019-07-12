@@ -22,6 +22,17 @@ public class UIScript : MonoBehaviour
     [Header("Level End Panel")]
     public GameObject levelComplatedPanel;
 
+
+    private bool isClicked;
+    private void Update()
+    {
+        if (Input.GetMouseButton(0) && isClicked)
+        {
+            HideLevelStartPanel();
+            isClicked = true;
+        }
+    }
+
     public void HideLevelStartPanel()
     {
         levelStartPanel.SetActive(false);
