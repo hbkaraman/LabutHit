@@ -32,18 +32,19 @@ public class BallControlScript : MonoBehaviour
             isMoving = false;
             gameObject.transform.localEulerAngles = Vector3.zero;
         }
-        if (!isMoving && rb.velocity.magnitude == 0)
+        if (!isMoving && rb.velocity.magnitude < 0.25F)
         {
             if (Input.touchCount > 0)
             {
+                aimRenderer.enabled = true;
                 Touch touch = Input.GetTouch(0);
+                Debug.Log(touch.phase);
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 Physics.Raycast(ray, out hit, 1000, mask);
                 if (touch.phase == TouchPhase.Began)
                 {
                     touchPos = hit.point;
                     touchIndicator.transform.position = hit.point;
-                    aimRenderer.enabled = true;
                 }
                 Vector3 subtraction = hit.point - touchPos;
                 float angle = Vector3.SignedAngle(subtraction, touchIndicator.transform.forward, Vector3.up);
@@ -56,16 +57,16 @@ public class BallControlScript : MonoBehaviour
             else
             {
                 rb.AddForce(force * forceMultiplier, ForceMode.Impulse);
-                //aimRenderer.enabled = false;
+                aimRenderer.enabled = false;
                 force = Vector3.zero;
                 isMoving = true;
             }
         }
-        if (isMoving && rb.velocity.magnitude < 0.25f)
+        if (isMoving && rb.velocity.magnitude < 1)
         {
             rb.velocity = Vector3.zero;
             isMoving = false;
-            gameObject.transform.position=new Vector3(0,1.48f,0);
+            gameObject.transform.position=new Vector3(0,1.52f,0);
             gameObject.transform.localEulerAngles = Vector3.zero;
         }
     }
